@@ -51,3 +51,7 @@ fastclick.attach(document.body)
 + 创建四个组件`rank`，`recommend`，`search`，`singer`
 + 创建盛放这个四个组件的容器`tab`，并配置显示路由
 + 在`router/index.js`中配置路由
+
+#### 第4次提交:封装`jsonp`方法
++ 下载安装`jsonp@0.2.1`
++ 封装两个方法，一个是跨域`jsonp`请求，一个是解析参数
