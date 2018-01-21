@@ -46,3 +46,8 @@ fastclick.attach(document.body)
 + 注意：
   + 需要在`m-header`组件内加入`m-header`类名，以显示样式
   + `m-header`组件不直接使用`header`命名，是因为自定义的组件名不能与HTML自身的标签名相同，不然会报错
+
+#### 第3次提交:页面路由及整体框架
++ 创建四个组件`rank`，`recommend`，`search`，`singer`
++ 创建盛放这个四个组件的容器`tab`，并配置显示路由
++ 在`router/index.js`中配置路由
