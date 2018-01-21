@@ -55,3 +55,10 @@ fastclick.attach(document.body)
 #### 第4次提交:封装`jsonp`方法
 + 下载安装`jsonp@0.2.1`
 + 封装两个方法，一个是跨域`jsonp`请求，一个是解析参数
+
+#### 第5次提交:利用`jsonp`获取数据
++ 封装一个获取推荐的`getRecommend`的方法
++ 将一些固定的获取`jsonp`数据的信息放在专门的`config.js`文件中
++ 在`recommend.vue`中调用`getRecommend`这个方法
++ 调用的时候，记得修改`build/webpack.base.conf.js`文件，添加`'api': resolve('src/api')`
+
