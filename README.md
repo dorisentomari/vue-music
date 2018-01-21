@@ -62,3 +62,12 @@ fastclick.attach(document.body)
 + 在`recommend.vue`中调用`getRecommend`这个方法
 + 调用的时候，记得修改`build/webpack.base.conf.js`文件，添加`'api': resolve('src/api')`
 
+#### 第6次提交:制作`slider`轮播图
++ 创建`dom.js`库函数，检测dom元素是否含有某一个类名`slider-item`
++ 修改`build/webpack.base.conf.js`文件，添加`'base': resolve('src/base')`
++ 在`recommend`组件内部引入`slider`组件
++ 将利用`jsonp`获取到的数据，循环遍历到`slider`组件内部
++ 在`slider`组件自身中，利用`better-scroll`依赖包使得`slider`达到轮播图的效果，具体参考`slider`组件的代码，略复杂
+
+
+
