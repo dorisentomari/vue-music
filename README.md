@@ -1,6 +1,6 @@
 ## vueApp
 ### 提交记录
-#### 第1次提交
+#### 第1次提交:项目初始化和基本配置
 + 记录: 
   + 项目初始化配置完成
   + 引入已经写好的`stylus`样式
@@ -24,3 +24,25 @@ resolve: {
     }
   },
 ```
+#### 第2次提交:显示logo和标题
++ 下载依赖
+  + `babel-polyfill@6.2.0`和`fastclick@1.0.6`
++ 载入`main.js`中载入依赖
+  + `babel-polyfill`转换ES6语法
+  + `fastclick`依赖包的目的是，将触屏时间延迟为300ms
+```javascript
+import 'babel-polyfill'
+
+import fastclick from 'fastclick'
+
+fastclick.attach(document.body)
+```
++ 主页面`index.html`的移动端适应
+```html
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+```
++ 修改`build/webpack.base.conf.js`文件，添加`'components': resolve('src/components')`
++ 创建`m-header`组件，显示logo和标题
++ 注意：
+  + 需要在`m-header`组件内加入`m-header`类名，以显示样式
+  + `m-header`组件不直接使用`header`命名，是因为自定义的组件名不能与HTML自身的标签名相同，不然会报错

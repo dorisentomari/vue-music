@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <router-view/>
+    <m-header></m-header>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import MHeader from 'components/m-header/m-header.vue'
+  export default {
+    name: 'App',
+    components: {
+      MHeader
+    }
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
