@@ -69,5 +69,8 @@ fastclick.attach(document.body)
 + 将利用`jsonp`获取到的数据，循环遍历到`slider`组件内部
 + 在`slider`组件自身中，利用`better-scroll`依赖包使得`slider`达到轮播图的效果，具体参考`slider`组件的代码，略复杂
 
+#### 第7次提交:`slider`轮播图优化
++ `<router-view></router-view>`直接显示轮播图的时候，切换路由，每次回到轮播页面，都会再次发送请求，体验差
++ 用`<keep-alive></keep-alive>`包裹住，可以将轮播缓存在内存中
 
 
