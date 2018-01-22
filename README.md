@@ -72,5 +72,9 @@ fastclick.attach(document.body)
 #### 第7次提交:`slider`轮播图优化
 + `<router-view></router-view>`直接显示轮播图的时候，切换路由，每次回到轮播页面，都会再次发送请求，体验差
 + 用`<keep-alive></keep-alive>`包裹住，可以将轮播缓存在内存中
-
-
++ 在轮播图切走的时候，销毁定时器，提高性能
+```js
+  desdoryed() {
+    clearTimeout(this.timer)
+  }
+```
