@@ -78,3 +78,12 @@ fastclick.attach(document.body)
     clearTimeout(this.timer)
   }
 ```
+#### 第8次提交:获取歌单数据
++ 由于QQ音乐对获取源有限制，所以采用变通的方法，获取数据
++ [QQ音乐中歌单的url地址](https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg?picmid=1&rnd=0.3021683586932469&g_tk=5381&jsonpCallback=getPlaylist&loginUin=0&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&categoryId=10000000&sortId=5&sin=0&ein=29)
++ 课程中老师介绍的方法，需要修改`webpack`配置
++ 我没有采用这种方法，而是变通了启用本地服务获取数据
++ 在`static/localServer`文件夹下创建另一个本地服务器(建议：将这两个文件移出vue音乐app项目，新建一个项目进行设置)
++ `index.js`文件中的`discList`数据，是从QQ音乐页面中获取，直接写死放在本地
++ 在`recommend.js`文件中暴露出一个向服务器url获取数据的方法
++ 在`recommend.vue`文件中引用该方法，将数据全部输出在控制台
