@@ -52,7 +52,7 @@
         this.slider.refresh()
       })
     },
-    desdoryed() {
+    destroyed () {
       clearTimeout(this.timer)
     },
     methods: {
