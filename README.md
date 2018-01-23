@@ -92,3 +92,13 @@ fastclick.attach(document.body)
 + 利用`better-scroll`库，新建一个`scroll`滚动的组件
 + 利用上次提交获取到的歌单数据，进行`v-for`循环，显示歌单详情
 + 写一个`loadImage()`函数，优化首次加载时轮播撑开高度，但是撑开后就不再调用该函数
+
+#### 第10次提交:首页图片懒加载
++ 使用`vue-lazyload`库，在`main.js`中使用这个库
+```vue
+Vue.use(VueLazyLoad, {
+  loading: require('common/image/default.png')
+})
+```
++ 在需要使用懒加载的image中添加`v-lazy="imageUrl"`
++ 但是`vue-lazyload`会与`fastclick`冲突，解决办法是在该image中添加一个类`class="needsclick"`
