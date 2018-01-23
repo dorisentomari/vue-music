@@ -87,3 +87,8 @@ fastclick.attach(document.body)
 + `index.js`文件中的`discList`数据，是从QQ音乐页面中获取，直接写死放在本地
 + 在`recommend.js`文件中暴露出一个向服务器url获取数据的方法
 + 在`recommend.vue`文件中引用该方法，将数据全部输出在控制台
+
+#### 第9次提交:显示歌单列表
++ 利用`better-scroll`库，新建一个`scroll`滚动的组件
++ 利用上次提交获取到的歌单数据，进行`v-for`循环，显示歌单详情
++ 写一个`loadImage()`函数，优化首次加载时轮播撑开高度，但是撑开后就不再调用该函数
