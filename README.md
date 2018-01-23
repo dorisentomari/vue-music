@@ -102,3 +102,6 @@ Vue.use(VueLazyLoad, {
 ```
 + 在需要使用懒加载的image中添加`v-lazy="imageUrl"`
 + 但是`vue-lazyload`会与`fastclick`冲突，解决办法是在该image中添加一个类`class="needsclick"`
+
+#### 第11次提交:`loading`组件
++ 创建`loading`组件，在`recommend`组件的`discList`的长度为空的时候，显示

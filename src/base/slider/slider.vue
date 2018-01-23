@@ -43,7 +43,7 @@
         if (this.autoPlay) {
           this._play()
         }
-      }, 200)
+      }, 20)
       window.addEventListener('resize', () => {
         if (!this.slider) {
           return
