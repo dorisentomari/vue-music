@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <scroll class="listview" :data="data">
+  <div class="listview">
+    <scroll :data="data">
       <ul>
         <li class="list-group" v-for="(group, groupIndex) in data" :key="groupIndex">
           <h2 class="list-group-title">{{group.title}}</h2>
@@ -54,7 +54,7 @@
         display: flex
         align-items: center
         padding: 20px 0 0 30px
-        .avatar
+        .avator
           width: 50px
           height: 50px
           border-radius: 50%
