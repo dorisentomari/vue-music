@@ -2,11 +2,11 @@
   <div class="recommend">
     <scroll ref="scroll" class="recommend-content" :data="discList">
       <div>
-        <div class="slider-wrapper">
+        <div v-if="recommends.length" class="slider-wrapper">
           <slider>
-            <div v-if="recommends.length" v-for="(item, index) in recommends" :key="index">
+            <div v-for="(item, index) in recommends" :key="index">
               <a :href="item.linkUrl">
-                <img :src="item.picUrl" :alt="item.id" @load="loadImage()">
+                <img :src="item.picUrl" class="needsclick" :alt="item.id" @load="loadImage()">
               </a>
             </div>
           </slider>
