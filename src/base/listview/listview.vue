@@ -78,6 +78,15 @@
         this.scrollY = pos.y
       },
       _scrollTo(index) {
+        if (!index && index !== 0) {
+          return
+        }
+        if (index < 0) {
+          index = 0
+        } else if (index > this.listHeight.length - 2) {
+          index = this.listHeight.length - 2
+        }
+        this.scrollY = -this.listHeight[index] // 点击字母时，让被点击的字母高亮
         this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
       },
       _calculateHeight() {
