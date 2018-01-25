@@ -66,7 +66,6 @@
           if (val.title === HOT_NAME) {
             hot.push(val)
           } else if (val.title.match(/[a-zA-Z]/)) {
-//             TODO val.title.match的时候出现错误
             ret.push(val)
           }
         }

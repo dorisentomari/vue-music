@@ -3,6 +3,7 @@ import {commonParams, options} from './config'
 
 export function getSingerList() {
   const url = 'https://c.y.qq.com/v8/fcg-bin/v8.fcg'
+  // const url = 'http://localhost:3000/getSingerList'
   const data = Object.assign({}, commonParams, {
     channel: 'singer',
     page: 'list',
