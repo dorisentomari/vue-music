@@ -50,3 +50,8 @@
 + `store/index.js`是`vuex`的入口文件
 + `strict`为严格模式，开发模式打开，上心后关闭
 + `createLog()`为`vuex`的一个插件，用于在控制台输出日志
+
+#### 第20次提交:调错并通过`vuex`传递数据
++ `import store from './store'`必须使用小写的`store`，大写的会报错
++ 在`singer`组件内使用`mapMutations`发射数据
++ 在`singer-detail`组件的计算属性使用`mapGetters`接收数据
