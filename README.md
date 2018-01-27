@@ -141,3 +141,16 @@ Vue.use(VueLazyLoad, {
 + 新建`SingerDetail`组件，作为`Singer`组件的子路由
 + `ListView`组件发射出一个`select`事件，然后`SingerDetail`组件接收`select`事件，然后将显示`SingerDetail`组件
 + 显示`SingerDetail`组件的时候比较生硬，做一个动画效果，过渡一下
+
+#### 第19次提交:使用`vuex`做状态管理
++ 在`store`文件夹下新建状态管理的文件
+  * `index.js`入口文件
+  * `state.js`状态
+  * `mutations.js`mutations
+  * `mutations-types.js`与`mutations`相关的一些名字，存储一些常量
+  * `actions.js`异步操作，对mutations进行封装
+  * `getters.js`对一些state做映射
++ `vuex`初始化
++ `store/index.js`是`vuex`的入口文件
++ `strict`为严格模式，开发模式打开，上心后关闭
++ `createLog()`为`vuex`的一个插件，用于在控制台输出日志
