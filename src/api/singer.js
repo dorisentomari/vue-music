@@ -8,7 +8,7 @@ export function getSingerList() {
     channel: 'singer',
     page: 'list',
     // key: 'all_all_all', // 全部歌手
-    key: 'cn_man_all', // 华语男
+    // key: 'cn_man_all', // 华语男
     // key: 'cn_woman_all', // 华语女
     // key: 'cn_team_all', // 华语组合
     // key: 'k_man_all', // 韩国男
@@ -21,7 +21,7 @@ export function getSingerList() {
     // key: 'eu_woman_all', // 欧美女
     // key: 'eu_team_all', // 欧美组合
     // key: 'c_orchestra_all', // 乐团
-    // key: 'c_performer_all', // 演奏家
+    key: 'c_performer_all', // 演奏家
     // key: 'c_composer_all', // 作曲家
     // key: 'c_cantor_all', // 指挥家
     // key: 'other_other_all', // 其他
