@@ -1,11 +1,11 @@
-import {playMode} from 'common/js/config';
+import {playMode} from 'common/js/config'
 
 const state = {
   singer: {},
   playing: false,
   fullScreen: false,
-  playlist: [],
-  sequence: [],
+  playList: [],
+  sequenceList: [],
   mode: playMode.sequence,
   currentIndex: -1
 }
