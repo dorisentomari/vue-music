@@ -136,3 +136,8 @@ Vue.use(VueLazyLoad, {
 #### 第17次提交:优化歌手页面字母快速导航
 + 字母被点击时，被点击的字母高亮
 + 在`热`和`Z`这两个字母的最上方和最下方取消事件效果
+
+#### 第18次提交:歌手页面子路由
++ 新建`SingerDetail`组件，作为`Singer`组件的子路由
++ `ListView`组件发射出一个`select`事件，然后`SingerDetail`组件接收`select`事件，然后将显示`SingerDetail`组件
++ 显示`SingerDetail`组件的时候比较生硬，做一个动画效果，过渡一下
