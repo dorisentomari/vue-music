@@ -3,20 +3,23 @@
     <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
       <div class="normal-player" v-show="fullScreen">
         <div class="background">
-          <img width="100%" height="100%" :src="currentSong.image">
+          <img width="100%" height="100%" :src="IMAGE">
+          <!--<img width="100%" height="100%" :src="currentSong.image">-->
         </div>
         <div class="top">
           <div class="back" @click="back">
             <i class="icon-back"></i>
           </div>
-          <h1 class="title" v-html="currentSong.name"></h1>
-          <h2 class="subtitle" v-html="currentSong.singer"></h2>
+          <h1 class="title" v-html="NAME"></h1>
+          <h2 class="subtitle" v-html="NAME"></h2>
+          <!--<h1 class="title" v-html="currentSong.name"></h1>-->
+          <!--<h2 class="subtitle" v-html="currentSong.singer"></h2>-->
         </div>
         <div class="middle">
           <div class="middle-l">
             <div class="cd-wrapper" ref="cdWrapper">
-              <div class="cd">
-                <img class="image" :src="currentSong.image">
+              <div class="cd" :class="cdCSS">
+                <img class="image" :src="IMAGE">
               </div>
             </div>
           </div>
@@ -30,7 +33,7 @@
               <i class="icon-prev"></i>
             </div>
             <div class="icon i-center">
-              <i class="icon-play"></i>
+              <i @click="togglePlaying" :class="playIcon"></i>
             </div>
             <div class="icon i-right">
               <i class="icon-next"></i>
@@ -45,18 +48,23 @@
     <transition name="mini">
       <div class="mini-player" v-show="!fullScreen" @click="open">
         <div class="icon">
-          <img width="40" height="40" :src="currentSong.image">
+          <img width="40" height="40" :src="IMAGE" :class="cdCSS">
         </div>
         <div class="text">
-          <h2 class="name" v-html="currentSong.name"></h2>
-          <p class="desc" v-html="currentSong.singer"></p>
+          <h2 class="name" v-html="NAME"></h2>
+          <p class="desc" v-html="NAME"></p>
+          <!--<h2 class="name" v-html="currentSong.name"></h2>-->
+          <!--<p class="desc" v-html="currentSong.singer"></p>-->
         </div>
-        <div class="control"></div>
+        <div class="control">
+          <i :class="miniIcon" @click.stop="togglePlaying"></i>
+        </div>
         <div class="control">
           <i class="icon-playlist"></i>
         </div>
       </div>
     </transition>
+    <audio :src="SONG_URL" ref="audio"></audio>
   </div>
 </template>
 
@@ -66,25 +74,35 @@
   import {prefixStyle} from 'common/js/dom'
   const transform = prefixStyle('transform')
   export default {
+    data() {
+      return {
+        IMAGE: 'https://p.qpic.cn/music_cover/SKXRlmcsZ6l0lL51kvt2hS7r0nqfYT2WBLce6bFOucqVlWjp6TJKqA/300?n=1',
+        NAME: 'MARKMAN',
+        SONG_URL: 'http://dl.stream.qqmusic.qq.com/C400000T1Ws32MWrUj.m4a?vkey=877A034E990BF74D3579BF71382B96617055462F5D4735B0AE5FC822CBDABA19FAF4C755448FF0EBD1AC10937E7F5650E7355D9693D25D07&guid=5834503216'
+      }
+    },
     computed: {
+      playIcon() {
+        return this.playing ? 'icon-pause' : 'icon-play'
+      },
+      miniIcon() {
+        return this.playing ? 'icon-pause-mini' : 'icon-play-mini'
+      },
+      cdCSS() {
+        return this.playing ? 'play' : 'pause'
+      },
       ...mapGetters([
         'fullScreen',
         'playList',
         'currentSong',
-        'currentIndex'
+        'currentIndex',
+        'playing'
       ])
     },
     created() {
-      console.log('this.currentSong')
-      console.log(this.currentSong)
-      console.log('this.playList')
-      console.log(this.playList)
-      console.log('this.fullScreen')
-      console.log(this.fullScreen)
-      console.log('this.currentIndex')
-      console.log(this.currentIndex)
-      console.log('------------------')
       console.log(this)
+      console.log('this.playing')
+      console.log(this.playing)
     },
     methods: {
       back() {
@@ -141,9 +159,26 @@
         const y = window.innerHeight - paddingTop - width / 2 - paddingBottom
         return {x, y, scale}
       },
+      togglePlaying() {
+        this.setPlayingState(!this.playing)
+      },
       ...mapMutations({
-        setFullScreen: 'SET_FULL_SCREEN'
+        setFullScreen: 'SET_FULL_SCREEN',
+        setPlayingState: 'SET_PLAYING_STATE'
       })
+    },
+    watch: {
+      currentSong() {
+        this.$nextTick(() => {
+          this.$refs.audio.play()
+        })
+      },
+      playing(newPlaying) {
+        this.$nextTick(() => {
+          const audio = this.$refs.audio
+          newPlaying ? audio.play() : audio.pause()
+        })
+      }
     }
   }
 </script>
@@ -380,4 +415,9 @@
           position: absolute
           left: 0
           top: 0
+  @keyframes rotate
+    0%
+      transform: rotate(0)
+    100%
+      transform: rotate(360deg)
 </style>
