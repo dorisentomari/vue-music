@@ -15,7 +15,7 @@
         <div class="middle">
           <div class="middle-l">
             <div class="cd-wrapper" ref="cdWrapper">
-              <div class="cd" :class="cdCSS">
+              <div class="cd" :class="cdClass">
                 <img class="image" :src="currentSong.image">
               </div>
             </div>
@@ -24,7 +24,9 @@
         <div class="bottom">
           <div class="progress-wrapper">
             <span class="time time-l">{{format(currentTime)}}</span>
-            <div class="progress-bar-wrapper"></div>
+            <div class="progress-bar-wrapper">
+              <progress-bar :percent="percent" :percentChange="onProgressBarChange"></progress-bar>
+            </div>
             <div class="time time-r">{{format(currentSong.duration)}}</div>
           </div>
           <div class="operators">
@@ -73,6 +75,7 @@
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
+  import ProgressBar from 'base/progress-bar/progress-bar'
   const transform = prefixStyle('transform')
   export default {
     data() {
@@ -89,8 +92,11 @@
       miniIcon() {
         return this.playing ? 'icon-pause-mini' : 'icon-play-mini'
       },
-      cdCSS() {
+      cdClass() {
         return this.playing ? 'play' : 'play pause'
+      },
+      percent() {
+        return this.currentTime / this.currentSong.duration
       },
       ...mapGetters([
         'fullScreen',
@@ -101,11 +107,6 @@
       ])
     },
     created() {
-      console.log(this)
-      console.log('this.playing')
-      console.log(this.playing)
-      console.log('this.currentSong')
-      console.log(this.currentSong)
     },
     methods: {
       back() {
@@ -204,7 +205,6 @@
       },
       updateTime(e) {
         this.currentTime = e.target.currentTime
-        console.log(this.currentTime)
       },
       format(interval) {
         interval = interval | 0
@@ -219,6 +219,12 @@
           len++
         }
         return num
+      },
+      onProgressBarChange(percent) {
+        this.$refs.audio.currentTime = this.currentSong.duration * percent
+        if (!this.playing) {
+          this.togglePlaying()
+        }
       },
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN',
@@ -238,6 +244,9 @@
           newPlaying ? audio.play() : audio.pause()
         })
       }
+    },
+    components: {
+      ProgressBar
     }
   }
 </script>
