@@ -30,14 +30,14 @@
             <div class="icon i-left">
               <i class="icon-sequence"></i>
             </div>
-            <div class="icon i-left">
-              <i class="icon-prev"></i>
+            <div class="icon i-left" :class="disableClass">
+              <i class="icon-prev" @click="prev"></i>
             </div>
-            <div class="icon i-center">
+            <div class="icon i-center" :class="disableClass">
               <i @click="togglePlaying" :class="playIcon"></i>
             </div>
-            <div class="icon i-right">
-              <i class="icon-next"></i>
+            <div class="icon i-right" :class="disableClass">
+              <i class="icon-next" @click="next"></i>
             </div>
             <div class="icon i-right">
               <i class="icon-not-favorite"></i>
@@ -66,7 +66,7 @@
         </div>
       </div>
     </transition>
-    <audio :src="SONG_URL" ref="audio"></audio>
+    <audio :src="SONG_URL" ref="audio" @canplay="ready" @error="ready"></audio>
     <!-- <audio :src="currentSong.url" ref="audio"></audio> -->
   </div>
 </template>
@@ -75,13 +75,15 @@
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
+  
   const transform = prefixStyle('transform')
   export default {
     data() {
       return {
         IMAGE: 'https://p.qpic.cn/music_cover/SKXRlmcsZ6l0lL51kvt2hS7r0nqfYT2WBLce6bFOucqVlWjp6TJKqA/300?n=1',
         NAME: 'MARKMAN',
-        SONG_URL: 'http://dl.stream.qqmusic.qq.com/C400000T1Ws32MWrUj.m4a?vkey=877A034E990BF74D3579BF71382B96617055462F5D4735B0AE5FC822CBDABA19FAF4C755448FF0EBD1AC10937E7F5650E7355D9693D25D07&guid=5834503216'
+        SONG_URL: 'http://dl.stream.qqmusic.qq.com/C400003UTRfZ12wGOs.m4a?vkey=14A53DCB7EB93F8AC091B3B98DDF54449B869832BEBBED6196C949332403AF5219A6D136EBF0E2827406AE68D25D4B0A92151D2D2E6AF5D3&guid=5834503216&uin=1047766372&fromtag=66',
+        songReady: false
       }
     },
     computed: {
@@ -167,9 +169,47 @@
       togglePlaying() {
         this.setPlayingState(!this.playing)
       },
+      next() {
+        if (!this.songReady) {
+          return
+        }
+        let index = this.currentIndex + 1
+        if (index === this.playList.length) {
+          index = 0
+        }
+        this.setCurrentIndex(index)
+        if (!this.playing) {
+          this.togglePlaying()
+        }
+        this.songReady = false
+      },
+      prev() {
+        if (!this.songReady) {
+          return
+        }
+        let index = this.currentIndex - 1
+        if (index === -1) {
+          index = this.playList.length - 1
+        }
+        this.setCurrentIndex(index)
+        if (!this.playing) {
+          this.togglePlaying()
+        }
+        this.songReady = false
+      },
+      ready() {
+        this.songReady = true
+      },
+      error() {
+        this.songReady = true
+      },
+      disableClass() {
+        return this.songReady ? '' : 'disable'
+      },
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN',
-        setPlayingState: 'SET_PLAYING_STATE'
+        setPlayingState: 'SET_PLAYING_STATE',
+        setCurrentIndex: 'SET_CURRENT_INDEX'
       })
     },
     watch: {
