@@ -4,7 +4,7 @@
       <div class="normal-player" v-show="fullScreen">
         <div class="background">
           <img width="100%" height="100%" :src="IMAGE">
-          <!--<img width="100%" height="100%" :src="currentSong.image">-->
+          <!-- <img width="100%" height="100%" :src="currentSong.image"> -->
         </div>
         <div class="top">
           <div class="back" @click="back">
@@ -12,14 +12,15 @@
           </div>
           <h1 class="title" v-html="NAME"></h1>
           <h2 class="subtitle" v-html="NAME"></h2>
-          <!--<h1 class="title" v-html="currentSong.name"></h1>-->
-          <!--<h2 class="subtitle" v-html="currentSong.singer"></h2>-->
+          <!-- <h1 class="title" v-html="currentSong.name"></h1> -->
+          <!-- <h2 class="subtitle" v-html="currentSong.singer"></h2> -->
         </div>
         <div class="middle">
           <div class="middle-l">
             <div class="cd-wrapper" ref="cdWrapper">
               <div class="cd" :class="cdCSS">
                 <img class="image" :src="IMAGE">
+                <!-- <img class="image" :src="currentSong.image"> -->
               </div>
             </div>
           </div>
@@ -49,12 +50,13 @@
       <div class="mini-player" v-show="!fullScreen" @click="open">
         <div class="icon">
           <img width="40" height="40" :src="IMAGE" :class="cdCSS">
+          <!-- <img width="40" height="40" :src="currentSong.image" :class="cdCSS"> -->
         </div>
         <div class="text">
           <h2 class="name" v-html="NAME"></h2>
           <p class="desc" v-html="NAME"></p>
-          <!--<h2 class="name" v-html="currentSong.name"></h2>-->
-          <!--<p class="desc" v-html="currentSong.singer"></p>-->
+          <!-- <h2 class="name" v-html="currentSong.name"></h2> -->
+          <!-- <p class="desc" v-html="currentSong.singer"></p> -->
         </div>
         <div class="control">
           <i :class="miniIcon" @click.stop="togglePlaying"></i>
@@ -65,6 +67,7 @@
       </div>
     </transition>
     <audio :src="SONG_URL" ref="audio"></audio>
+    <!-- <audio :src="currentSong.url" ref="audio"></audio> -->
   </div>
 </template>
 
@@ -103,6 +106,8 @@
       console.log(this)
       console.log('this.playing')
       console.log(this.playing)
+      console.log('this.currentSong')
+      console.log(this.currentSong)
     },
     methods: {
       back() {
