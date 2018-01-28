@@ -59,7 +59,9 @@
           <p class="desc" v-html="currentSong.singer"></p>
         </div>
         <div class="control">
-          <i :class="miniIcon" @click.stop="togglePlaying"></i>
+          <progress-circle :radius="radius" :percent="percent">
+            <i class="icon-mini" :class="miniIcon" @click.stop="togglePlaying"></i>
+          </progress-circle>
         </div>
         <div class="control">
           <i class="icon-playlist"></i>
@@ -76,12 +78,14 @@
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
   import ProgressBar from 'base/progress-bar/progress-bar'
+  import ProgressCircle from 'base/progress-circle/progress-circle'
   const transform = prefixStyle('transform')
   export default {
     data() {
       return {
         songReady: false,
         currentTime: 0,
+        radius: 32,
         songUrl: 'http://dl.stream.qqmusic.qq.com/C400000pDHmH1GLRac.m4a?vkey=BCF0F2F0CF7859BC8EA4C043A94670CEEA4BBD8D6848F02656FB83F70E7C9AD9BE84BC2D5A7A20972C38277C990497AE7F0F02B5F3DB9CD5&guid=5834503216&uin=1047766372&fromtag=66'
       }
     },
@@ -246,7 +250,8 @@
       }
     },
     components: {
-      ProgressBar
+      ProgressBar,
+      ProgressCircle
     }
   }
 </script>
