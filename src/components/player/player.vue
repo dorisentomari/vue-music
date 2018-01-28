@@ -3,29 +3,30 @@
     <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
       <div class="normal-player" v-show="fullScreen">
         <div class="background">
-          <img width="100%" height="100%" :src="IMAGE">
-          <!-- <img width="100%" height="100%" :src="currentSong.image"> -->
+          <img width="100%" height="100%" :src="currentSong.image">
         </div>
         <div class="top">
           <div class="back" @click="back">
             <i class="icon-back"></i>
           </div>
-          <h1 class="title" v-html="NAME"></h1>
-          <h2 class="subtitle" v-html="NAME"></h2>
-          <!-- <h1 class="title" v-html="currentSong.name"></h1> -->
-          <!-- <h2 class="subtitle" v-html="currentSong.singer"></h2> -->
+          <h1 class="title" v-html="currentSong.name"></h1>
+          <h2 class="subtitle" v-html="currentSong.singer"></h2>
         </div>
         <div class="middle">
           <div class="middle-l">
             <div class="cd-wrapper" ref="cdWrapper">
               <div class="cd" :class="cdCSS">
-                <img class="image" :src="IMAGE">
-                <!-- <img class="image" :src="currentSong.image"> -->
+                <img class="image" :src="currentSong.image">
               </div>
             </div>
           </div>
         </div>
         <div class="bottom">
+          <div class="progress-wrapper">
+            <span class="time time-l">{{format(currentTime)}}</span>
+            <div class="progress-bar-wrapper"></div>
+            <div class="time time-r">{{format(currentSong.duration)}}</div>
+          </div>
           <div class="operators">
             <div class="icon i-left">
               <i class="icon-sequence"></i>
@@ -49,14 +50,11 @@
     <transition name="mini">
       <div class="mini-player" v-show="!fullScreen" @click="open">
         <div class="icon">
-          <img width="40" height="40" :src="IMAGE" :class="cdCSS">
-          <!-- <img width="40" height="40" :src="currentSong.image" :class="cdCSS"> -->
+          <img width="40" height="40" :src="currentSong.image" :class="cdCSS">
         </div>
         <div class="text">
-          <h2 class="name" v-html="NAME"></h2>
-          <p class="desc" v-html="NAME"></p>
-          <!-- <h2 class="name" v-html="currentSong.name"></h2> -->
-          <!-- <p class="desc" v-html="currentSong.singer"></p> -->
+          <h2 class="name" v-html="currentSong.name"></h2>
+          <p class="desc" v-html="currentSong.singer"></p>
         </div>
         <div class="control">
           <i :class="miniIcon" @click.stop="togglePlaying"></i>
@@ -66,8 +64,8 @@
         </div>
       </div>
     </transition>
-    <audio :src="SONG_URL" ref="audio" @canplay="ready" @error="ready"></audio>
-    <!-- <audio :src="currentSong.url" ref="audio"></audio> -->
+    <audio :src="songUrl" ref="audio" @canplay="ready" @error="ready" @timeupdate="updateTime"></audio>
+    <!--<audio :src="currentSong.url" ref="audio" @canplay="ready" @error="ready" @timeupdate="updateTime"></audio>-->
   </div>
 </template>
 
@@ -75,15 +73,13 @@
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
-  
   const transform = prefixStyle('transform')
   export default {
     data() {
       return {
-        IMAGE: 'https://p.qpic.cn/music_cover/SKXRlmcsZ6l0lL51kvt2hS7r0nqfYT2WBLce6bFOucqVlWjp6TJKqA/300?n=1',
-        NAME: 'MARKMAN',
-        SONG_URL: 'http://dl.stream.qqmusic.qq.com/C400003UTRfZ12wGOs.m4a?vkey=14A53DCB7EB93F8AC091B3B98DDF54449B869832BEBBED6196C949332403AF5219A6D136EBF0E2827406AE68D25D4B0A92151D2D2E6AF5D3&guid=5834503216&uin=1047766372&fromtag=66',
-        songReady: false
+        songReady: false,
+        currentTime: 0,
+        songUrl: 'http://dl.stream.qqmusic.qq.com/C400000pDHmH1GLRac.m4a?vkey=BCF0F2F0CF7859BC8EA4C043A94670CEEA4BBD8D6848F02656FB83F70E7C9AD9BE84BC2D5A7A20972C38277C990497AE7F0F02B5F3DB9CD5&guid=5834503216&uin=1047766372&fromtag=66'
       }
     },
     computed: {
@@ -94,7 +90,7 @@
         return this.playing ? 'icon-pause-mini' : 'icon-play-mini'
       },
       cdCSS() {
-        return this.playing ? 'play' : 'pause'
+        return this.playing ? 'play' : 'play pause'
       },
       ...mapGetters([
         'fullScreen',
@@ -205,6 +201,24 @@
       },
       disableClass() {
         return this.songReady ? '' : 'disable'
+      },
+      updateTime(e) {
+        this.currentTime = e.target.currentTime
+        console.log(this.currentTime)
+      },
+      format(interval) {
+        interval = interval | 0
+        const minute = interval / 60 | 0
+        const second = this._pad(interval % 60)
+        return `${minute}:${second}`
+      },
+      _pad(num, n = 2) {
+        let len = num.toString().length
+        while (len < n) {
+          num = '0' + num
+          len++
+        }
+        return num
       },
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN',
@@ -460,6 +474,7 @@
           position: absolute
           left: 0
           top: 0
+  
   @keyframes rotate
     0%
       transform: rotate(0)
