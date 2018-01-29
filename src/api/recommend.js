@@ -16,7 +16,7 @@ export function getDiscList() {
   const url = 'http://localhost:3000/getDiscList'
   const data = Object.assign({}, commonParams, {
     platform: 'yqq',
-    g_tk: 5381,
+    g_tk: 777098020,
     hostUin: 0,
     sortId: 5,
     sin: 0,
@@ -24,7 +24,11 @@ export function getDiscList() {
     needNewCode: 0,
     categoryId: 10000000,
     rnd: Math.random(),
-    format: 'json'
+    format: 'jsonp',
+    jsonpCallback: 'getPlaylist',
+    inCharset: 'utf8',
+    outCharset: 'utf-8',
+    notice: 0
   })
   return axios.get(url, {
     params: data
