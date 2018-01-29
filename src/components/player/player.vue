@@ -81,7 +81,6 @@
   import ProgressCircle from 'base/progress-circle/progress-circle'
   import {playMode} from 'common/js/config'
   import {Shuffle} from 'common/js/util'
-  
   const transform = prefixStyle('transform')
   export default {
     data() {
@@ -89,7 +88,7 @@
         songReady: false,
         currentTime: 0,
         radius: 32,
-        songUrl: 'http://dl.stream.qqmusic.qq.com/C400000pDHmH1GLRac.m4a?vkey=BCF0F2F0CF7859BC8EA4C043A94670CEEA4BBD8D6848F02656FB83F70E7C9AD9BE84BC2D5A7A20972C38277C990497AE7F0F02B5F3DB9CD5&guid=5834503216&uin=1047766372&fromtag=66'
+        songUrl: 'http://dl.stream.qqmusic.qq.com/C4000012lNgt2EBpLt.m4a?vkey=22C2C759E63772EFDD28D4004AB1C44388E299134A159FB152C819D525A475B4E162D01E0F946C491C0EDE9DE0E277317749B27D19BF6B34&guid=5834503216&uin=1047766372&fromtag=66'
       }
     },
     computed: {
@@ -261,6 +260,8 @@
         this.setPlayList(list)
       },
       resetCurrentIndex(list) {
+        console.log('list')
+        console.log(list)
         let index = list.findIndex((item) => {
           return item.id === this.currentSong.id
         })
@@ -281,6 +282,7 @@
         }
         this.$nextTick(() => {
           this.$refs.audio.play()
+          this.currentSong.getLyric()
         })
       },
       playing(newPlaying) {

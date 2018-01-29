@@ -1,3 +1,5 @@
+import {getLyric} from 'api/song'
+import {ERR_OK} from 'api/config'
 export default class Song {
   constructor({id, mid, singer, name, album, duration, image, url}) {
     this.id = id
@@ -8,6 +10,13 @@ export default class Song {
     this.duration = duration
     this.image = image
     this.url = url
+  }
+  getLyric() {
+    getLyric(this.mid).then((res)=>{
+      if(res.code === ERR_OK) {
+        this.lyric = res.lyric
+      }
+    })
   }
 }
 // 创建一个工厂方法，不直接使用new，而是返回一个实例方法
