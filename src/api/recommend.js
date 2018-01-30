@@ -15,6 +15,7 @@ export function getRecommend() {
 export function getDiscList() {
   const url = 'http://localhost:3000/getDiscList'
   const data = Object.assign({}, commonParams, {
+    picmid: 1,
     platform: 'yqq',
     g_tk: 777098020,
     hostUin: 0,
@@ -33,6 +34,8 @@ export function getDiscList() {
   return axios.get(url, {
     params: data
   }).then((res) => {
+    console.log('res')
+    console.log(res)
     return Promise.resolve(res.data)
   })
 }

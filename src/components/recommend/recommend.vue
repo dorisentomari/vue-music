@@ -62,6 +62,7 @@
         getDiscList().then((res) => {
           if (res.code === ERR_OK) {
             this.discList = res.data.list
+            /** 架用本地服务绕过QQ音乐对访问源的限制 **/
             console.log('res.data.list')
             console.log(res.data.list)
           }
