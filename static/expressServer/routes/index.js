@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 var axios = require('axios')
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index')
@@ -31,8 +32,11 @@ router.get('/getSongLyric', function (req, res) {
     platform: 'yqq',
     needNewCode: 0
   }
-  var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?callback=MusicJsonCallback_lrc&pcachetime=1517318242342&g_tk=777098020&jsonpCallback=MusicJsonCallback_lrc&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&songmid=001WDDO12p5QAS'
+  // var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?callback=MusicJsonCallback_lrc&pcachetime=1517318242342&g_tk=777098020&jsonpCallback=MusicJsonCallback_lrc&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&songmid=' + req.query.songmid
   // var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?'
+  var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?callback=MusicJsonCallback_lrc&pcachetime=1517318242342&g_tk=777098020&jsonpCallback=MusicJsonCallback_lrc&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&songmid=00009UE30ipmqo'
+  console.log(req.query.songmid)
+  console.log(url)
   axios.get(url, {
     headers: {
       'access-control-allow-origin': 'https://y.qq.com',
@@ -43,6 +47,7 @@ router.get('/getSongLyric', function (req, res) {
     params: params
   }).then((response) => {
     let ret = response.data
+    console.log(ret)
     if (typeof ret === 'string') {
       let reg = /^\w+\(({[^()]+})\)$/
       let matches = ret.match(reg)

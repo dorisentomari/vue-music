@@ -15,13 +15,13 @@ export function getSingerList() {
     // key: 'k_woman_all', // 韩国女
     // key: 'k_team_all', // 韩国组合
     // key: 'j_man_all', // 日本男
-    // key: 'j_woman_all', // 日本女
+    key: 'j_woman_all', // 日本女
     // key: 'j_team_all', // 日本组合
     // key: 'eu_man_all', // 欧美男
     // key: 'eu_woman_all', // 欧美女
     // key: 'eu_team_all', // 欧美组合
     // key: 'c_orchestra_all', // 乐团
-    key: 'c_performer_all', // 演奏家
+    // key: 'c_performer_all', // 演奏家
     // key: 'c_composer_all', // 作曲家
     // key: 'c_cantor_all', // 指挥家
     // key: 'other_other_all', // 其他

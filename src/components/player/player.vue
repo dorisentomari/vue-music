@@ -20,6 +20,18 @@
               </div>
             </div>
           </div>
+          <scroll class="middle-r" ref="lyricList" :data="currentLyric && currentLyric.lines">
+            <div class="lyric-wrapper">
+              <div v-if="currentLyric">
+                <p class="text"
+                   ref="lyricLine"
+                   v-for="(line, index) in currentLyric.lines"
+                   :key="index"
+                   :class="{'current': currentLineNumber === index }"
+                >{{line.txt}}</p>
+              </div>
+            </div>
+          </scroll>
         </div>
         <div class="bottom">
           <div class="progress-wrapper">
@@ -81,6 +93,9 @@
   import ProgressCircle from 'base/progress-circle/progress-circle'
   import {playMode} from 'common/js/config'
   import {Shuffle} from 'common/js/util'
+  import Lyric from 'lyric-parser'
+  import Scroll from 'base/scroll/scroll'
+  
   const transform = prefixStyle('transform')
   export default {
     data() {
@@ -88,6 +103,8 @@
         songReady: false,
         currentTime: 0,
         radius: 32,
+        currentLyric: null,
+        currentLineNumber: 0,
         songUrl: 'http://dl.stream.qqmusic.qq.com/C4000012lNgt2EBpLt.m4a?vkey=22C2C759E63772EFDD28D4004AB1C44388E299134A159FB152C819D525A475B4E162D01E0F946C491C0EDE9DE0E277317749B27D19BF6B34&guid=5834503216&uin=1047766372&fromtag=66'
       }
     },
@@ -267,6 +284,25 @@
         })
         this.setCurrentIndex(index)
       },
+      getLyric() {
+        this.currentSong.getLyric().then((lyric) => {
+          this.currentLyric = new Lyric(lyric, this.handleLyric())
+          if (this.playing) {
+            this.currentLyric.play()
+          }
+          console.log('this.currentLyric')
+          console.log(this.currentLyric)
+        })
+      },
+      handleLyric(lineNumber, txt) {
+        this.currentLineNumber = lineNumber
+        if (lineNumber > 5) {
+          let lineEl = this.$refs.lyricLine[lineNumber - 5]
+          this.$refs.lyricList.scrollToElement(lineEl, 1000)
+        } else {
+          this.$refs.lyricList.scrollTo(0, 0, 1000)
+        }
+      },
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN',
         setPlayingState: 'SET_PLAYING_STATE',
@@ -294,7 +330,8 @@
     },
     components: {
       ProgressBar,
-      ProgressCircle
+      ProgressCircle,
+      Scroll
     }
   }
 </script>
