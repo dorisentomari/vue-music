@@ -118,6 +118,9 @@
           height += item.clientHeight
           this.listHeight.push(height)
         }
+      },
+      refresh() {
+        this.$refs.listview.refresh()
       }
     },
     watch: {
