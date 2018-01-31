@@ -1,0 +1,90 @@
+
+歌曲：凉凉(张碧晨)
+歌曲资源地址：http://dl.stream.qqmusic.qq.com/C400001CkBs10UxKxc.m4a?vkey=743E91A83A1D33D9A40E1FA3F0A219730CF1C5766DFB48D88DF504A9BF2CA14536791957F4C59C4AF881862A5219025FB672330959175E26&guid=5834503216&uin=1047766372&fromtag=66
+
+http://dl.stream.qqmusic.qq.com/C400001CkBs10UxKxc.m4a?vkey=4727B507E628B97E52D6FC29422B80F1ADBB3BA7A3C97D437638267CF7DA3017D8056D52D8C6A50EF2A97CF3FDFDBCF39D472F8823B50888&guid=5834503216&uin=1047766372&fromtag=66
+
+http://dl.stream.qqmusic.qq.com/C400001CkBs10UxKxc.m4a?vkey=1D7AE997BB089F8F952860225C75EA95C28E32639E338D422FCF9356F4B83B61C4F90658D6ACFAA8AB05C7767B1E57059D40C9823FEDCF75&guid=5834503216&uin=1047766372&fromtag=66
+
+
+url解析：
+host: dl.stream.qqmusic.qq.com
+pathname: C400001CkBs10UxKxc.m4a
+vkey: 随机出现112位长度的加密码
+guid: 5834503216
+uin: 1047766372
+fromtag: 66
+
+
+返回值解析：
+{
+  "code": 0,
+  "cid": 205361747,
+  "userip": "58.33.39.142",
+  "data": {
+    "expiration": 80400,
+    "items": [{
+      "subcode": 0,
+      "songmid": "001Nl0W80sBSwJ",
+      "filename": "C400001CkBs10UxKxc.m4a",
+      "vkey": "743E91A83A1D33D9A40E1FA3F0A219730CF1C5766DFB48D88DF504A9BF2CA14536791957F4C59C4AF881862A5219025FB672330959175E26"
+    }]
+  }
+}
+
+{
+      'Flisten_count1': '210000000',
+      'Fupload_time': '2017-01-09 10:47:20',
+      'index': 1,
+      'isnew': 0,
+      'listenCount': 0,
+      'musicData': {
+        'albumdesc': '《三生三世十里桃花》电视剧片尾曲',
+        'albumid': 1853998,
+        'albummid': '0011IIJE3XYf9L',
+        'albumname': '三生三世十里桃花 电视剧原声带',
+        'alertid': 100002,
+        'belongCD': 2,
+        'cdIdx': 0,
+        'interval': 333,
+        'isonly': 1,
+        'label': '0',
+        'msgid': 14,
+        'pay': {
+          'payalbum': 0,
+          'payalbumprice': 0,
+          'paydownload': 1,
+          'payinfo': 1,
+          'payplay': 0,
+          'paytrackmouth': 1,
+          'paytrackprice': 200,
+          'timefree': 0
+        },
+        'preview': {'trybegin': 90626, 'tryend': 140210, 'trysize': 794539},
+        'rate': 31,
+        'singer': [{'id': 11608, 'mid': '003tMm0y0TuewY', 'name': '杨宗纬'}, {
+          'id': 199515,
+          'mid': '0003ZpE43ypssl',
+          'name': '张碧晨'
+        }],
+        'size128': 5334603,
+        'size320': 13336222,
+        'size5_1': 0,
+        'sizeape': 35098683,
+        'sizeflac': 35025522,
+        'sizeogg': 7569407,
+        'songid': 200380820,
+        'songmid': '001Nl0W80sBSwJ',
+        'songname': '凉凉',
+        'songorig': '凉凉',
+        'songtype': 0,
+        'strMediaMid': '001CkBs10UxKxc',
+        'stream': 13,
+        'switch': 17413891,
+        'type': 0,
+        'vid': 'p0022w4yvpo'
+      },
+      'playurl': '',
+      'price': 320,
+      'vid': {'Fmv_id': '1069744', 'Fstatus': '1', 'Fvid': 'p0022w4yvpo'}
+    }
