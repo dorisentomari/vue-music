@@ -52,18 +52,3 @@ export function getSingerDetail(singerId) {
   })
   return jsonp(url, data, options)
 }
-
-var a = {
-  "code": 0,
-  "cid": 205361747,
-  "userip": "58.33.39.142",
-  "data": {
-    "expiration": 80400,
-    "items": [{
-      "subcode": 0,
-      "songmid": "001Nl0W80sBSwJ",
-      "filename": "C400001CkBs10UxKxc.m4a",
-      "vkey": "743E91A83A1D33D9A40E1FA3F0A219730CF1C5766DFB48D88DF504A9BF2CA14536791957F4C59C4AF881862A5219025FB672330959175E26"
-    }]
-  }
-}

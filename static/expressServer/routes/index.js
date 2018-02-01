@@ -47,14 +47,6 @@ router.get('/getSongLyric', function (req, res) {
     params: params
   }).then((response) => {
     let ret = response.data
-    console.log(ret)
-    if (typeof ret === 'string') {
-      let reg = /^\w+\(({[^()]+})\)$/
-      let matches = ret.match(reg)
-      if (matches) {
-        ret = JSON.parse(matches[1])
-      }
-    }
     res.json(ret)
   }).catch((e) => {
     console.log(e)
