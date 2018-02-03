@@ -35,8 +35,26 @@ export function getDiscList() {
     params: data
   }).then((response) => {
     let ret = response.data
-    let data = ret.slice(12, -1)
-    console.log(JSON.parse(data))
-    return Promise.resolve(data)
+    return Promise.resolve(ret)
+  })
+}
+
+export function getSongList(disstid) {
+  const url = 'http://localhost:3000/getSongList'
+  const data = Object.assign({}, commonParams, {
+    disstid,
+    type: 1,
+    json: 1,
+    utf8: 1,
+    onlysong: 0,
+    platform: 'yqq',
+    hostUin: 0,
+    format: 'jsonp',
+    g_tk: 777098020
+  })
+  return axios.get(url, {
+    params: data
+  }).then((response) => {
+    return Promise.resolve(response.data)
   })
 }

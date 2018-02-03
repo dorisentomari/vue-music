@@ -64,14 +64,8 @@
       },
       _getDiscList() {
         getDiscList().then((res) => {
-          console.log('_getDiscList')
-          res = JSON.parse(res)
           if (res.code === ERR_OK) {
-            console.log('test line')
             this.discList = res.data.list
-            /** 架用本地服务绕过QQ音乐对访问源的限制 **/
-            console.log('res.data.list')
-            console.log(res.data.list)
           }
         })
       },
@@ -87,8 +81,6 @@
         this.$refs.scroll.refresh()
       },
       selectItem(item) {
-        console.log('item')
-        console.log(item)
         this.$router.push({
           path: `/recommend/${item.dissid}`
         })
