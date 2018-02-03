@@ -106,7 +106,6 @@
   import {Shuffle} from 'common/js/util'
   import Lyric from 'lyric-parser'
   import Scroll from 'base/scroll/scroll'
-  
   const transform = prefixStyle('transform')
   const transitionDuration = prefixStyle('transitionDuration')
   export default {
@@ -119,7 +118,7 @@
         currentLineNumber: 0,
         currentShow: 'cd',
         playingLyric: '',
-        songUrl: 'http://dl.stream.qqmusic.qq.com/C400002Ymw5d19idok.m4a?vkey=08B38E374DE4024CA6A9F32FA82CA40C029B08D2AFDE561CA927C8D3686F0E839D7D71A10BB2B59A88734D813CFE58C0ED7D457A4493C613&guid=5834503216&uin=1047766372&fromtag=66'
+        songUrl: 'http://dl.stream.qqmusic.qq.com/C4000012lNgt2EBpLt.m4a?vkey=9DD225E2486E7DD1F08AFBDECD52B1F292AE9DC4E484FC252DAB34EEBA8384378B56B82C45D1F4C6C8C528DC020071810746D528E09EEE79&guid=5834503216&uin=1047766372&fromtag=66'
       }
     },
     computed: {

@@ -100,4 +100,8 @@ router.get('/getDiscList', function (req, res) {
   })
 })
 
+router.get('/getSongList', function (req, res) {
+  res.render('getSongList')
+})
+
 module.exports = router
