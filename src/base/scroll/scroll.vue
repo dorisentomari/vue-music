@@ -6,7 +6,6 @@
 
 <script>
   import BScroll from 'better-scroll'
-  
   export default {
     props: {
       probeType: {
@@ -26,6 +25,10 @@
         default: false
       },
       pullup: {
+        type: Boolean,
+        default: false
+      },
+      beforeScroll: {
         type: Boolean,
         default: false
       }
@@ -52,9 +55,14 @@
         }
         if (this.pullup) {
           this.scroll.on('scrollEnd', () => {
-            if (this.scroll.y <= (this.scroll.maxScrollY + 50)){
+            if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
               this.$emit('scrollToEnd')
             }
+          })
+        }
+        if (this.boforeScroll) {
+          this.scroll.on('beforeScrollStart', () => {
+            this.$emit('beforeScroll')
           })
         }
       },

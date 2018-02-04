@@ -1,5 +1,5 @@
 <template>
-  <scroll class="suggest" :data="result" :pullup="pullup" @scrollToEnd="searchMore" ref="suggest">
+  <scroll class="suggest" :data="result" :pullup="pullup" @scrollToEnd="searchMore" ref="suggest" :before-scroll="beforeScroll" @beforeScroll="listScroll">
     <ul class="suggest-list">
       <li @click="selectItem(item)" class="suggest-item" v-for="(item, index) in result" :key="index">
         <div class="icon">
@@ -35,7 +35,8 @@
         result: [],
         pullup: true,
         hasMore: true,
-        title: '搜索结果为空'
+        title: '搜索结果为空',
+        beforeScroll: true
       }
     },
     props: {
@@ -129,6 +130,9 @@
           }
         })
         return ret
+      },
+      listScroll() {
+        this.$emit('listScroll')
       }
     },
     watch: {
