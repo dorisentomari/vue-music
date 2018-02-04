@@ -112,4 +112,8 @@ router.get('/getHotKey', function (req, res) {
   res.render('getHotKey')
 })
 
+router.get('/getSearchResult', function (req, res) {
+  res.render('getSearchResult')
+})
+
 module.exports = router
