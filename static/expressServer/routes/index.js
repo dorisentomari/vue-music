@@ -108,4 +108,8 @@ router.get('/getTopList', function (req, res) {
   res.render('getTopList')
 })
 
+router.get('/getHotKey', function (req, res) {
+  res.render('getHotKey')
+})
+
 module.exports = router
