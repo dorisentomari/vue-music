@@ -11,6 +11,9 @@
       </li>
       <loading v-show="hasMore" title=""></loading>
     </ul>
+    <div v-show="!hasMore && !result.length" class="no-result-wrapper">
+      <no-result :title="title"></no-result>
+    </div>
   </scroll>
 </template>
 
@@ -22,7 +25,7 @@
   import Scroll from 'base/scroll/scroll'
   import Loading from 'base/loading/loading'
   import {mapMutations, mapActions} from 'vuex'
-
+  import NoResult from 'base/no-result/no-result'
   const PER_PAGE = 20
   const TYPE_SINGER = 'singer'
   export default {
@@ -31,7 +34,8 @@
         page: 1,
         result: [],
         pullup: true,
-        hasMore: true
+        hasMore: true,
+        title: '搜索结果为空'
       }
     },
     props: {
@@ -134,7 +138,8 @@
     },
     components: {
       Scroll,
-      Loading
+      Loading,
+      NoResult
     },
     ...mapMutations({
       setSinger: 'SET_SINGER'
