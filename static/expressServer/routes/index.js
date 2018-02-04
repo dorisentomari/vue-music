@@ -104,4 +104,8 @@ router.get('/getSongList', function (req, res) {
   res.render('getSongList')
 })
 
+router.get('/getTopList', function (req, res) {
+  res.render('getTopList')
+})
+
 module.exports = router
