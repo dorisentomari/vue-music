@@ -21,7 +21,7 @@
             :data="songs"
             ref="list">
       <div class="song-list-wrapper">
-        <song-list @select="selectItem" :songs="songs"></song-list>
+        <song-list @select="selectItem" :songs="songs" :rank="rank"></song-list>
       </div>
       <div class="loading-container" v-show="!songs.length">
         <loading></loading>
@@ -37,7 +37,6 @@
   import Loading from 'base/loading/loading'
   import {mapActions} from 'vuex'
   import {playListMixin} from 'common/js/mixin'
-  
   const RESERVED_HEIGHT = 40
   const transform = prefixStyle('transform')
   const backdrop = prefixStyle('backdrop')
@@ -57,6 +56,10 @@
       title: {
         type: String,
         default: ''
+      },
+      rank: {
+        type: Boolean,
+        default: false
       }
     },
     data() {

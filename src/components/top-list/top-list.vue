@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list>
+    <music-list :title="title" :bg-image="bgImage" :songs="songs" :rank="rank"></music-list>
   </transition>
 </template>
 
@@ -10,11 +10,11 @@
   import {getMusicList} from 'api/rank'
   import {ERR_OK} from 'api/config'
   import {createSong} from 'common/js/song'
-  
   export default {
     data() {
       return {
-        songs: []
+        songs: [],
+        rank: true
       }
     },
     components: {
