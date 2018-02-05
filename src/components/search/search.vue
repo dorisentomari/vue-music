@@ -27,6 +27,7 @@
   import Suggest from 'components/suggest/suggest'
   import {getHotKey} from 'api/search'
   import {ERR_OK} from 'api/config'
+  import {mapActions} from 'vuex'
   export default {
     data() {
       return {
@@ -59,8 +60,11 @@
         this.query = query
       },
       saveSearch() {
-      
-      }
+        this.saveSearchHistory(this.query)
+      },
+      ...mapActions([
+        'saveSearchHistory'
+      ])
     }
   }
 </script>
