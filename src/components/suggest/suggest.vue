@@ -88,6 +88,7 @@
         } else {
           this.insertSong(item)
         }
+        this.$emit('select')
       },
       _checkMore(data) {
         const song = data.song
