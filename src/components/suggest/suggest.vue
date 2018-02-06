@@ -1,5 +1,11 @@
 <template>
-  <scroll class="suggest" :data="result" :pullup="pullup" @scrollToEnd="searchMore" ref="suggest" :before-scroll="beforeScroll" @beforeScroll="listScroll">
+  <scroll ref="suggest"
+          class="suggest"
+          :data="result"
+          :pullup="pullup"
+          :before-scroll="beforeScroll"
+          @scrollToEnd="searchMore"
+          @beforeScroll="listScroll">
     <ul class="suggest-list">
       <li @click="selectItem(item)" class="suggest-item" v-for="(item, index) in result" :key="index">
         <div class="icon">
@@ -26,6 +32,7 @@
   import Loading from 'base/loading/loading'
   import {mapMutations, mapActions} from 'vuex'
   import NoResult from 'base/no-result/no-result'
+  
   const PER_PAGE = 20
   const TYPE_SINGER = 'singer'
   export default {
@@ -88,7 +95,7 @@
         } else {
           this.insertSong(item)
         }
-        this.$emit('select')
+        this.$emit('select', item)
       },
       _checkMore(data) {
         const song = data.song
@@ -134,11 +141,14 @@
       },
       listScroll() {
         this.$emit('listScroll')
+      },
+      refresh() {
+        this.$refs.suggest.refresh()
       }
     },
     watch: {
-      query() {
-        this._search()
+      query(newQuery) {
+        this._search(newQuery)
       }
     },
     components: {
