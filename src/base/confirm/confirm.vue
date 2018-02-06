@@ -10,6 +10,7 @@
           </div>
         </div>
       </div>
+      <p class="test">this is test</p>
     </div>
   </transition>
 </template>
@@ -54,7 +55,7 @@
   }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   .confirm
     position: fixed

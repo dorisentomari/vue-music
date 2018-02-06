@@ -8,7 +8,7 @@
         <div class="hot-key">
           <h1 class="title">热门搜索</h1>
           <ul>
-            <li @click="addQuery(item)" class="item" v-for="(item, index) in hotKey" :key="index">
+            <li @click="addQuery(item.k)" class="item" v-for="(item, index) in hotKey" :key="index">
               <span>{{item.k}}</span>
             </li>
           </ul>
@@ -21,12 +21,12 @@
               <i class="icon-clear"></i>
             </span>
           </h1>
-          <search-list :select="addQuery" :delete="deleteOne" :searches="searchHistory"></search-list>
+          <search-list @select="addQuery" @delete="deleteOne" :searches="searchHistory"></search-list>
         </div>
       </div>
     </div>
     <div class="search-result" v-show="query">
-      <suggest @select="saveSearch" :listScroll="blurInput" :query="query"></suggest>
+      <suggest @select="saveSearch" @listScroll="blurInput" :query="query"></suggest>
     </div>
     <confirm ref="confirm" text="是否清空所有搜索历史" confirmBtnText="清空" @confirm="deleteAll"></confirm>
     <router-view></router-view>
@@ -87,7 +87,7 @@
         this.$refs.confirm.show()
       },
       ...mapActions([
-        'saveSearchHistory'
+        'clearSearchHistory'
       ])
     },
     computed: {
