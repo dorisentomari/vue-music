@@ -44,10 +44,9 @@
   import {mapActions, mapGetters} from 'vuex'
   import SearchList from 'base/search-list/search-list'
   import Confirm from 'base/confirm/confirm'
-  import {playListMixin} from 'common/js/mixin'
-  
+  import {playListMixin, searchMixin} from 'common/js/mixin'
   export default {
-    mixins: [playListMixin],
+    mixins: [playListMixin, searchMixin],
     data() {
       return {
         hotKey: [],
@@ -66,18 +65,6 @@
           }
         })
       },
-      blurInput() {
-        this.$refs.searchBox.blur()
-      },
-      addQuery(query) {
-        this.$refs.searchBox.setQuery(query.k)
-      },
-      onQueryChange(query) {
-        this.query = query
-      },
-      saveSearch() {
-        this.saveSearchHistory(this.query)
-      },
       deleteOne(item) {
         this.deleteSearchHistory(item)
       },
@@ -89,7 +76,6 @@
       },
       handlePlayList(playlist) {
         const bottom = playlist.length > 0 ? '60px' : ''
-//        console.log(this.$refs)
         this.$refs.searchResult.style.bottom = bottom
         this.$refs.suggest.refresh()
         this.$refs.shortcutWrapper.style.bottom = bottom
