@@ -41,7 +41,7 @@
   import Scroll from 'base/scroll/scroll'
   import {getHotKey} from 'api/search'
   import {ERR_OK} from 'api/config'
-  import {mapActions, mapGetters} from 'vuex'
+  import {mapActions} from 'vuex'
   import SearchList from 'base/search-list/search-list'
   import Confirm from 'base/confirm/confirm'
   import {playListMixin, searchMixin} from 'common/js/mixin'
@@ -100,12 +100,7 @@
     computed: {
       shortCut() {
         return this.hotKey.concat(this.searchHistory)
-      },
-      ...mapGetters([
-        'searchHistory',
-        'deleteSearchHistory',
-        'clearSearchHistory'
-      ])
+      }
     },
     watch: {
       query(newQuery) {
