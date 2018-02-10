@@ -92,7 +92,7 @@
       </div>
     </transition>
     <playlist ref="playlist"></playlist>
-    <audio :src="songUrl" ref="audio" @canplay="ready" @error="ready" @timeupdate="updateTime" @end="end"></audio>
+    <audio :src="songUrl" ref="audio" @play="ready" @error="ready" @timeupdate="updateTime" @end="end"></audio>
     <!--<audio :src="currentSong.url" ref="audio" @canplay="ready" @error="ready" @timeupdate="updateTime"></audio>-->
   </div>
 </template>
@@ -101,12 +101,14 @@
   import {mapGetters, mapMutations, mapActions} from 'vuex'
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
+  import {playMode} from 'common/js/config'
   import ProgressBar from 'base/progress-bar/progress-bar'
   import ProgressCircle from 'base/progress-circle/progress-circle'
   import Lyric from 'lyric-parser'
   import Scroll from 'base/scroll/scroll'
   import Playlist from 'components/playlist/playlist'
   import {playerMixin} from 'common/js/mixin'
+  
   const transform = prefixStyle('transform')
   const transitionDuration = prefixStyle('transitionDuration')
   export default {
@@ -215,6 +217,7 @@
         }
         if (this.playList.length = 1) {
           this.loop()
+          return
         } else {
           let index = this.currentIndex + 1
           if (index === this.playList.length) {
@@ -230,6 +233,7 @@
       prev() {
         if (this.playList.length = 1) {
           this.loop()
+          return
         } else {
           if (!this.songReady) {
             return
@@ -297,6 +301,9 @@
       },
       getLyric() {
         this.currentSong.getLyric().then((lyric) => {
+          if (this.currentSong.lyric !== lyric) {
+            return
+          }
           this.currentLyric = new Lyric(lyric, this.handleLyric())
           if (this.playing) {
             this.currentLyric.play()
@@ -392,13 +399,17 @@
         if (!newSong.id) {
           return
         }
-        if (newSong.id === oldSong) {
+        if (newSong.id === oldSong.id) {
           return
         }
         if (this.currentLyric) {
           this.currentLyric.stop()
+          this.currentTime = 0
+          this.playingLyric = ''
+          this.currentLineNumber = 0
         }
-        setTimeout(() => {
+        clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
           this.$refs.audio.play()
           this.getLyric()
         }, 1000)
