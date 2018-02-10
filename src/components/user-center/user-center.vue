@@ -20,7 +20,6 @@
 
 <script>
   import Switches from 'base/switches/switches'
-  
   export default {
     data() {
       return {
