@@ -16,11 +16,11 @@
             <li ref="listItem" @click="selectItem(item, index)" class="item" v-for="(item,index) in sequenceList" :key="item.id">
               <i class="current" :class="getCurrentIcon(item)"></i>
               <span class="text">{{item.name}}</span>
-              <span class="like">
+              <span class="like" @click.stop="toggleFavorite(item)">
                 <i class="icon-not-favorite"></i>
               </span>
               <span class="delete" @click.stop="deleteOne(item)">
-                <i class="icon-delete"></i>
+                <i :class="getFavoriteIcon(item)"></i>
               </span>
             </li>
           </transition-group>
