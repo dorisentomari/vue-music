@@ -84,7 +84,7 @@ export function deleteFavorite(song) {
   deleteFromArray(songs, (item) => {
     return song.id === item.id
   })
-  storage.ser(FAVORITE_KEY, songs)
+  storage.set(FAVORITE_KEY, songs)
   return songs
 }
 
